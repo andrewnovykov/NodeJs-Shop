@@ -13,11 +13,15 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/admin', adminRoutes);
-app.use('/', shopRoutes);
+app.use( shopRoutes);
 
+
+app.use( (req, res, next ) => {
+  res.status(404).send('page not found');
+});
 
 
 
 app.listen( Port, ( ) => {
-    console.log(`Server is running on port: ${Port}`); 
+    console.log(`Server is running on port: ${Port}`);
 })
